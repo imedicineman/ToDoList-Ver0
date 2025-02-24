@@ -8,22 +8,28 @@
 import SwiftUI
 
 struct ToDoListView: View {
+    var toDos = ["Learn Swift",
+                 "Build apps",
+                 "Save the world",
+                 "Make a sandwich",
+                 "Take a Vacation"]
+    
     var body: some View {
         NavigationStack {
-            VStack {
-                NavigationLink {
-                    DetailView()
-                } label: {
-                    Image(systemName: "eye")
-
-                    Text("Show the New View")
-                        .font(.largeTitle)
-                        .fontWeight(.medium)
+            //Setup a list of item numbers 0-99 that link to Detail view
+            List {
+                ForEach(0..<100, id: \.self) { number in
+                    NavigationLink {
+                        DetailView(passedValue: "Item\(number)")
+                    } label: {
+                        Text("Item \(number)")
+                    }
                 }
-                .buttonStyle(BorderedProminentButtonStyle())
             }
-            .padding()
+            .navigationBarTitle("To-Do List")
+            .navigationBarTitleDisplayMode(.automatic)
         }
+        
     }
 }
 #Preview {
