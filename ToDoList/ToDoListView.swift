@@ -18,11 +18,11 @@ struct ToDoListView: View {
         NavigationStack {
             //Setup a list of item numbers 0-99 that link to Detail view
             List {
-                ForEach(0..<100, id: \.self) { number in
+                ForEach(toDos, id: \.self) { toDo in
                     NavigationLink {
-                        DetailView(passedValue: "Item\(number)")
+                        DetailView(passedValue: toDo)
                     } label: {
-                        Text("Item \(number)")
+                        Text(toDo)
                     }
                 }
             }
